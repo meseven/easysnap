@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 require('dotenv').config();
 
 const { ApolloServer } = require('apollo-server-express');
@@ -11,7 +12,10 @@ const server = new ApolloServer({
 	resolvers
 });
 
-console.log(process.env.DB_HOST);
+mongoose
+	.connect(process.env.DB_URI, { useNewUrlParser: true })
+	.then(() => console.log('Connected to MongoDB'))
+	.catch(e => console.log(e));
 
 const app = express();
 server.applyMiddleware({ app });
