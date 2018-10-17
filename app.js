@@ -7,9 +7,15 @@ const { importSchema } = require('graphql-import');
 
 const resolvers = require('./graphql/resolvers/index');
 
+// models
+const User = require('./models/User');
+
 const server = new ApolloServer({
 	typeDefs: importSchema('./graphql/schema.graphql'),
-	resolvers
+	resolvers,
+	context: {
+		User
+	}
 });
 
 mongoose
