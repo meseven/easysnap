@@ -3,3 +3,5 @@
 
 # import Query from './types/snap.graphql'
 # import Mutation from './types/snap.graphql'
+
+# import Query from './types/token.graphql'
