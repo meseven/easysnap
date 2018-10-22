@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const token = require('../../../helpers/token');
 
 module.exports = {
 	createUser: async (parent, { data: { username, password } }, { User }) => {
@@ -25,6 +26,6 @@ module.exports = {
 		  throw new Error("Wrong password!");
 		}
 
-		return { token: 'test token ljalsd' }
+		return { token: token.generate(user, '1h') }
 	}
 };
