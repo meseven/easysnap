@@ -1,5 +1,6 @@
 type Query{
     snap(id: ID!): Snap!
+    snaps: [Snap!]!
 }
 
 type Snap{
