@@ -7,6 +7,7 @@ type Snap{
     id: ID!
     text: String!
     createdAt: String!
+    user: User!
 }
 
 type Mutation {
