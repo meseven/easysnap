@@ -11,7 +11,7 @@ type User{
 }
 
 type Mutation {
-    createUser(data: CreateUserInput!): User
+    createUser(data: CreateUserInput!): Token
     signIn(data: SigninUserInput!): Token
 }
 
