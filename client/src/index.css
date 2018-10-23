@@ -144,15 +144,16 @@ li:nth-child(5) {
   text-align: right;
 }
 
-.header_menu > div{
+.header_menu > a, .header_menu > div{
   display: inline-block;
   cursor: pointer;
   font-size: 16px;
-  margin-left:10px
+  color:#000;
+  text-decoration: none;
+  padding: 8px;
 }
 
 .header_menu .active{
-  padding: 8px;
   background: #fbf9bd;
   user-select: none;
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import {
 	BrowserRouter as Router,
@@ -6,7 +6,6 @@ import {
 	Switch,
 	Redirect
 } from 'react-router-dom';
-
 
 import Header from './Header';
 
@@ -17,12 +16,15 @@ import Join from './pages/Join';
 
 const Root = () => (
 	<Router>
-		<Switch>
-			<Route path="/" exact component={Home} />
-			<Route path="/login" component={Login} />
-			<Route path="/join" component={Join} />
-			<Redirect to="/" />
-		</Switch>
+		<Fragment>
+			<Header />
+			<Switch>
+				<Route path="/" exact component={Home} />
+				<Route path="/login" component={Login} />
+				<Route path="/join" component={Join} />
+				<Redirect to="/" />
+			</Switch>
+		</Fragment>
 	</Router>
 );
 
@@ -32,7 +34,7 @@ class App extends Component {
 			<div id="app">
 				<div className="container">
 
-					<Header />
+
 
 					<Root />
 
