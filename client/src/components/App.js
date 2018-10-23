@@ -1,9 +1,30 @@
 import React, { Component } from 'react';
 
+import {
+	BrowserRouter as Router,
+	Route,
+	Switch,
+	Redirect
+} from 'react-router-dom';
+
+
 import Header from './Header';
 
 // pages
 import Home from './pages/Home';
+import Login from './pages/Login';
+import Join from './pages/Join';
+
+const Root = () => (
+	<Router>
+		<Switch>
+			<Route path="/" exact component={Home} />
+			<Route path="/login" component={Login} />
+			<Route path="/join" component={Join} />
+			<Redirect to="/" />
+		</Switch>
+	</Router>
+);
 
 class App extends Component {
   render() {
@@ -13,7 +34,7 @@ class App extends Component {
 
 					<Header />
 
-					<Home />
+					<Root />
 
 				</div>
 			</div>
