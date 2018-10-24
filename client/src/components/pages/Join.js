@@ -1,18 +1,43 @@
 import React, {Component} from 'react';
 
 class Join extends Component {
+	state = {
+		username: '',
+		password: '',
+		passwordConfirm: ''
+	};
+
+	onChange = e => {
+		const { name, value } = e.target;
+		this.setState({
+			[name]: value
+		})
+	};
+
 	render() {
 		return (
 			<div>
 				<form className="user-form">
 					<label>
-						<input type="text" placeholder="username"/>
+						<input
+							name="username"
+							onChange={this.onChange}
+							type="text"
+							placeholder="username"/>
 					</label>
 					<label>
-						<input type="password" placeholder="password"/>
+						<input
+							name="password"
+							onChange={this.onChange}
+							type="password"
+							placeholder="password"/>
 					</label>
 					<label>
-						<input type="password" placeholder="confirm password"/>
+						<input
+							name="passwordConfirm"
+							onChange={this.onChange}
+							type="password"
+							placeholder="confirm password"/>
 					</label>
 					<label>
 						<button>Join</button>

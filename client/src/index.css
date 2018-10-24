@@ -24,10 +24,6 @@ ul{
   grid-template-columns: 40% auto;
 }
 
-.header > div{
-
-}
-
 .logo {
   margin-bottom: 30px;
 }
@@ -156,6 +152,10 @@ li:nth-child(5) {
 .header_menu .active{
   background: #fbf9bd;
   user-select: none;
+}
+
+.user-form *{
+  font-family: "Roboto Mono", monospace;
 }
 
 .user-form{

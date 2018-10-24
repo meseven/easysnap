@@ -33,11 +33,7 @@ class App extends Component {
     return (
 			<div id="app">
 				<div className="container">
-
-
-
 					<Root />
-
 				</div>
 			</div>
     );
