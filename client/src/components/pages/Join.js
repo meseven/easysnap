@@ -19,6 +19,14 @@ class Join extends Component {
 		})
 	};
 
+	formValidate = () => {
+		const { username, password, passwordConfirm } = this.state;
+
+		const isInvalid = !username || !password || !passwordConfirm || password !== passwordConfirm;
+
+		return isInvalid
+	};
+
 	onSubmit = (e, createUser) => {
 		e.preventDefault();
 		createUser().then(data => console.log(data))
@@ -35,6 +43,7 @@ class Join extends Component {
 								this.onSubmit(e, createUser)
 							} }
 							className="user-form">
+
 							<label>
 								<input
 									name="username"
@@ -57,11 +66,12 @@ class Join extends Component {
 									placeholder="confirm password"/>
 							</label>
 							<label>
-								<button>Join</button>
+								<button disabled={ loading || this.formValidate() }>Join</button>
 							</label>
 
 							{ loading && <div>loading...</div> }
 							{ error && <Error error={error} />}
+
 						</form>
 					) }
 				</Mutation>
