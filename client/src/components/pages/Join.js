@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import { Mutation } from 'react-apollo';
+
+import { CREATE_USER } from '../../queries';
 
 class Join extends Component {
 	state = {
@@ -14,35 +17,50 @@ class Join extends Component {
 		})
 	};
 
+	onSubmit = (e, createUser) => {
+		e.preventDefault();
+		createUser().then(data => console.log(data))
+	};
+
 	render() {
+		const { username, password } = this.state;
 		return (
 			<div>
-				<form className="user-form">
-					<label>
-						<input
-							name="username"
-							onChange={this.onChange}
-							type="text"
-							placeholder="username"/>
-					</label>
-					<label>
-						<input
-							name="password"
-							onChange={this.onChange}
-							type="password"
-							placeholder="password"/>
-					</label>
-					<label>
-						<input
-							name="passwordConfirm"
-							onChange={this.onChange}
-							type="password"
-							placeholder="confirm password"/>
-					</label>
-					<label>
-						<button>Join</button>
-					</label>
-				</form>
+				<Mutation mutation={CREATE_USER} variables={ { username, password } }>
+					{ (createUser, { loading, error } ) => (
+						<form
+							onSubmit={ e => {
+								this.onSubmit(e, createUser)
+							} }
+							className="user-form">
+							<label>
+								<input
+									name="username"
+									onChange={this.onChange}
+									type="text"
+									placeholder="username"/>
+							</label>
+							<label>
+								<input
+									name="password"
+									onChange={this.onChange}
+									type="password"
+									placeholder="password"/>
+							</label>
+							<label>
+								<input
+									name="passwordConfirm"
+									onChange={this.onChange}
+									type="password"
+									placeholder="confirm password"/>
+							</label>
+							<label>
+								<button>Join</button>
+							</label>
+						</form>
+					) }
+				</Mutation>
+
 			</div>
 		);
 	}
