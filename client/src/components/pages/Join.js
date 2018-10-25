@@ -5,11 +5,15 @@ import { CREATE_USER } from '../../queries';
 
 import Error from '../Error';
 
+const initialState = {
+	username: '',
+	password: '',
+	passwordConfirm: ''
+};
+
 class Join extends Component {
 	state = {
-		username: '',
-		password: '',
-		passwordConfirm: ''
+		...initialState
 	};
 
 	onChange = e => {
@@ -24,16 +28,25 @@ class Join extends Component {
 
 		const isInvalid = !username || !password || !passwordConfirm || password !== passwordConfirm;
 
-		return isInvalid
+		return isInvalid;
+	};
+
+	resetState = () => {
+		this.setState({
+			...initialState
+		})
 	};
 
 	onSubmit = (e, createUser) => {
 		e.preventDefault();
-		createUser().then(data => console.log(data))
+		createUser().then(data => {
+			console.log(data);
+			this.resetState();
+		})
 	};
 
 	render() {
-		const { username, password } = this.state;
+		const { username, password, passwordConfirm } = this.state;
 		return (
 			<div>
 				<Mutation mutation={CREATE_USER} variables={ { username, password } }>
@@ -49,6 +62,7 @@ class Join extends Component {
 									name="username"
 									onChange={this.onChange}
 									type="text"
+									value={username}
 									placeholder="username"/>
 							</label>
 							<label>
@@ -56,6 +70,7 @@ class Join extends Component {
 									name="password"
 									onChange={this.onChange}
 									type="password"
+									value={password}
 									placeholder="password"/>
 							</label>
 							<label>
@@ -63,6 +78,7 @@ class Join extends Component {
 									name="passwordConfirm"
 									onChange={this.onChange}
 									type="password"
+									value={passwordConfirm}
 									placeholder="confirm password"/>
 							</label>
 							<label>
