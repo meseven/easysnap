@@ -27,11 +27,17 @@ class Login extends Component {
 		return (!username || !password);
 	};
 
+	resetState = () => {
+		this.setState({
+			...initialState
+		})
+	};
+
 	onSubmit = (e, signinUser) => {
 		e.preventDefault();
 		signinUser().then(data => {
 			console.log(data);
-			//this.resetState();
+			this.resetState();
 		})
 	};
 
@@ -52,6 +58,7 @@ class Login extends Component {
 									onChange={this.onChange}
 									name="username"
 									type="text"
+									value={username}
 									placeholder="username"/>
 							</label>
 							<label>
@@ -59,6 +66,7 @@ class Login extends Component {
 									onChange={this.onChange}
 									name="password"
 									type="password"
+									value={password}
 									placeholder="password"/>
 							</label>
 							<label>
