@@ -1,15 +1,39 @@
 import React, {Component} from 'react';
 
+const initialState = {
+	username: '',
+	password: ''
+};
+
 class Login extends Component {
+	state = {
+		...initialState
+	};
+
+	onChange = e => {
+		const { name, value } = e.target;
+		this.setState({
+			[name]: value
+		})
+	};
+
 	render() {
 		return (
 			<div>
 				<form className="user-form">
 					<label>
-						<input type="text" placeholder="username"/>
+						<input
+							onChange={this.onChange}
+							name="username"
+							type="text"
+							placeholder="username"/>
 					</label>
 					<label>
-						<input type="password" placeholder="password"/>
+						<input
+							onChange={this.onChange}
+							name="password"
+							type="password"
+							placeholder="password"/>
 					</label>
 					<label>
 						<button>Login</button>
