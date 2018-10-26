@@ -15,10 +15,11 @@ const Snap = require('./models/Snap');
 const server = new ApolloServer({
 	typeDefs: importSchema('./graphql/schema.graphql'),
 	resolvers,
-	context: {
+	context: ({ req }) => ({
 		User,
-		Snap
-	}
+		Snap,
+		activeUser: req.activeUser
+	})
 });
 
 mongoose
@@ -34,6 +35,7 @@ app.use(async (req, res, next) => {
 	if (token && token !== 'null') {
 	  try{
 	  	const activeUser = await jwt.verify(token, process.env.SECRET_KEY);
+	  	req.activeUser = activeUser;
 			console.log(activeUser);
 	  }catch (e) {
 			console.log(e);
