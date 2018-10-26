@@ -26,6 +26,17 @@ mongoose
 	.catch(e => console.log(e));
 
 const app = express();
+
+app.use((req, res, next) => {
+	const token = req.headers['authorization'];
+	
+	if (token && token !== 'null') {
+	  console.log(token);
+	}
+
+	next();
+});
+
 server.applyMiddleware({ app });
 
 app.listen({ port: 4001 }, () => {
