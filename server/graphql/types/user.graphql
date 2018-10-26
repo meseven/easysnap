@@ -1,6 +1,8 @@
 type Query{
     user(id: ID!): User!
     users: [User!]!
+
+    activeUser: User
 }
 
 type User{
