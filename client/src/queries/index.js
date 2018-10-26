@@ -9,3 +9,14 @@ export const CREATE_USER = gql`
 		}
 	}
 `;
+
+export const SIGNIN_USER = gql`
+	mutation($username: String! $password: String!){
+		signIn(data: {
+			username: $username
+			password: $password
+		}){
+			token
+		}
+	}
+`;

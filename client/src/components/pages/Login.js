@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import { Mutation } from 'react-apollo';
+
+import { SIGNIN_USER } from '../../queries';
 
 const initialState = {
 	username: '',
@@ -17,28 +20,46 @@ class Login extends Component {
 		})
 	};
 
+	onSubmit = (e, signinUser) => {
+		e.preventDefault();
+		signinUser().then(data => {
+			console.log(data);
+			//this.resetState();
+		})
+	};
+
 	render() {
+		const { username, password } = this.state;
+
 		return (
 			<div>
-				<form className="user-form">
-					<label>
-						<input
-							onChange={this.onChange}
-							name="username"
-							type="text"
-							placeholder="username"/>
-					</label>
-					<label>
-						<input
-							onChange={this.onChange}
-							name="password"
-							type="password"
-							placeholder="password"/>
-					</label>
-					<label>
-						<button>Login</button>
-					</label>
-				</form>
+				<Mutation mutation={SIGNIN_USER} variables={ {username, password} }>
+					{ (signinUser, { loading, error }) => (
+						<form
+							onSubmit={e => {
+								this.onSubmit(e, signinUser)
+							}}
+							className="user-form">
+							<label>
+								<input
+									onChange={this.onChange}
+									name="username"
+									type="text"
+									placeholder="username"/>
+							</label>
+							<label>
+								<input
+									onChange={this.onChange}
+									name="password"
+									type="password"
+									placeholder="password"/>
+							</label>
+							<label>
+								<button>Login</button>
+							</label>
+						</form>
+					) }
+				</Mutation>
 			</div>
 		);
 	}
