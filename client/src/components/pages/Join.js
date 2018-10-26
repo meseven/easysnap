@@ -37,8 +37,9 @@ class Join extends Component {
 
 	onSubmit = (e, createUser) => {
 		e.preventDefault();
-		createUser().then(data => {
+		createUser().then(({ data }) => {
 			console.log(data);
+			localStorage.setItem('token', data.createUser.token);
 			this.resetState();
 		})
 	};
