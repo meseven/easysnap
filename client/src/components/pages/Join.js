@@ -26,9 +26,7 @@ class Join extends Component {
 	formValidate = () => {
 		const { username, password, passwordConfirm } = this.state;
 
-		const isInvalid = !username || !password || !passwordConfirm || password !== passwordConfirm;
-
-		return isInvalid;
+		return (!username || !password || !passwordConfirm || password !== passwordConfirm);
 	};
 
 	resetState = () => {
