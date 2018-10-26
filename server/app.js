@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const { ApolloServer } = require('apollo-server-express');
@@ -27,11 +28,16 @@ mongoose
 
 const app = express();
 
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
 	const token = req.headers['authorization'];
 	
 	if (token && token !== 'null') {
-	  console.log(token);
+	  try{
+	  	const activeUser = await jwt.verify(token, process.env.SECRET_KEY);
+			console.log(activeUser);
+	  }catch (e) {
+			console.log(e);
+		}
 	}
 
 	next();
