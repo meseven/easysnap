@@ -6,11 +6,11 @@ import { GET_ACTIVE_USER } from '../queries';
 const sessionWrapperHOC = Component => props => (
 	<Query query={GET_ACTIVE_USER}>
 		{
-			({ data, loading }) => {
+			({ data, loading, refetch }) => {
 				if (loading) return <div style={ {textAlign: 'center'} }>Loading...</div>
 
 				console.log(data);
-				return <Component {...props} />
+				return <Component {...props} refetch={refetch} />
 			}
 		}
 	</Query>

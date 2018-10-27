@@ -16,14 +16,14 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Join from './pages/Join';
 
-const Root = () => (
+const Root = ({ refetch }) => (
 	<Router>
 		<Fragment>
 			<Header />
 			<Switch>
 				<Route path="/" exact component={Home} />
-				<Route path="/login" component={Login} />
-				<Route path="/join" component={Join} />
+				<Route path="/login" render={ () => <Login refetch={refetch} />} />
+				<Route path="/join" render={ () => <Join refetch={refetch} />} />
 				<Redirect to="/" />
 			</Switch>
 		</Fragment>

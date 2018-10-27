@@ -37,9 +37,10 @@ class Login extends Component {
 
 	onSubmit = (e, signinUser) => {
 		e.preventDefault();
-		signinUser().then(({ data }) => {
+		signinUser().then(async ({ data }) => {
 			console.log(data);
 			localStorage.setItem('token', data.signIn.token);
+			await this.props.refetch();
 			this.resetState();
 			this.props.history.push('/');
 		})
