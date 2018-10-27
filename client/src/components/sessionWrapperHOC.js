@@ -10,7 +10,7 @@ const sessionWrapperHOC = Component => props => (
 				if (loading) return <div style={ {textAlign: 'center'} }>Loading...</div>
 
 				console.log(data);
-				return <Component {...props} refetch={refetch} />
+				return <Component {...props} refetch={refetch} session={data} />
 			}
 		}
 	</Query>
