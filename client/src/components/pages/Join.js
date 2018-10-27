@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { withRouter } from 'react-router-dom';
+
 import { Mutation } from 'react-apollo';
 
 import { CREATE_USER } from '../../queries';
@@ -41,6 +43,7 @@ class Join extends Component {
 			console.log(data);
 			localStorage.setItem('token', data.createUser.token);
 			this.resetState();
+			this.props.history.push('/');
 		})
 	};
 
@@ -95,4 +98,4 @@ class Join extends Component {
 	}
 }
 
-export default Join;
+export default withRouter(Join);
