@@ -13,7 +13,6 @@ const Logout = ({ history }) => (
 	<ApolloConsumer>
 		{
 			(client) => {
-				console.log(client);
 				return <button onClick={() => onClick(history,client)}>Logout</button>
 			}
 		}

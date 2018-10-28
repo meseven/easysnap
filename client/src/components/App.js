@@ -25,7 +25,7 @@ const Root = ({ refetch, session }) => (
 				<Route path="/" exact component={Home} />
 				<Route path="/login" render={ () => <Login refetch={refetch} />} />
 				<Route path="/join" render={ () => <Join refetch={refetch} />} />
-				<Route path="/profile" component={ Profile } />
+				<Route path="/profile" render={ () => <Profile session={session} />} />
 				<Redirect to="/" />
 			</Switch>
 		</Fragment>
