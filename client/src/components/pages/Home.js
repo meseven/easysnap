@@ -8,6 +8,8 @@ import TimeAgo from 'react-timeago';
 class Home extends Component {
 
 	render() {
+		const { session } = this.props;
+
 		return (
 			<div>
 				<div className="description">
@@ -16,7 +18,11 @@ class Home extends Component {
 
 				<div>
 					<form>
-						<input className="add-snap__input" type="text" placeholder="add snap"/>
+						<input
+							className="add-snap__input"
+							type="text"
+							disabled={!(session && session.activeUser)}
+							placeholder={ session && session.activeUser ? 'add snap' : 'please login for add a new snap!' }/>
 					</form>
 				</div>
 
