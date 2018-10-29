@@ -29,31 +29,33 @@ class Home extends Component {
 								if (error) return <div>Error.</div>;
 
 								return (
-									<ul className="snaps">
-										{
-											data.snaps.map(snap => (
-												<li key={snap.id}>
-													<div className="title">
-														<span className="username">@{ snap.user.username } </span>
-														{ snap.text }
-													</div>
-													<div className="date">
-														<span>
-															<TimeAgo date={ snap.createdAt } />
-														</span>
-													</div>
-												</li>
-											))
-										}
-									</ul>
-								)
+									<div>
+										<ul className="snaps">
+											{
+												data.snaps.map(snap => (
+													<li key={snap.id}>
+														<div className="title">
+															<span className="username">@{ snap.user.username } </span>
+															{ snap.text }
+														</div>
+														<div className="date">
+															<span>
+																<TimeAgo date={ snap.createdAt } />
+															</span>
+														</div>
+													</li>
+												))
+											}
+										</ul>
 
+										<div className="counter">{ data.snaps.length } snap(s)</div>
+									</div>
+								)
 							}
 						}
 					</Query>
 
 				</div>
-				<div className="counter">3 snap(s)</div>
 			</div>
 		);
 	}
