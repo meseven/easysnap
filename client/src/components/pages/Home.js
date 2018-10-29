@@ -18,6 +18,12 @@ class Home extends Component {
 		});
 	};
 
+	formValidate = () => {
+		const { text } = this.state;
+
+		return !text;
+	};
+
 	componentDidMount() {
 		this.setState({
 			user_id: this.props.session.activeUser.id
@@ -26,9 +32,12 @@ class Home extends Component {
 
 	onSubmit = (e, addSnap) => {
 		e.preventDefault();
-		addSnap().then(async ({ data }) => {
-			console.log(data);
-		})
+
+		if (!this.formValidate()) {
+			addSnap().then(async ({ data }) => {
+				console.log(data);
+			})
+		}
 	};
 
 	render() {
