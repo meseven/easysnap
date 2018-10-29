@@ -17,4 +17,4 @@ const Profile = ({ session: { activeUser } }) => (
 	</div>
 );
 
-export default auth(session && session.activeUser)(Profile);
+export default auth(session => session && session.activeUser)(Profile);
