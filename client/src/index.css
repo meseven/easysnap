@@ -128,9 +128,14 @@ li:nth-child(5) {
   font-size: 12px;
 }
 
-.snaps li .date .username {
+.snaps li .username {
   font-size: 12px;
   font-weight: bold;
+}
+
+.loading{
+  text-align: center;
+  padding: 1rem
 }
 
 .counter {
