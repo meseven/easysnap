@@ -33,3 +33,18 @@ export const GET_ACTIVE_USER = gql`
 		}
 	}
 `;
+
+// Homepage
+export const GET_SNAPS = gql`
+	query{
+		snaps{
+			id
+			text
+			createdAt
+			user{
+				id
+				username
+			}
+		}
+	}
+`;
