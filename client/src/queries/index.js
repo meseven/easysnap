@@ -49,3 +49,14 @@ export const GET_SNAPS = gql`
 		}
 	}
 `;
+
+export const ADD_SNAP = gql`
+	mutation($text: String! $user_id: ID!){
+		createSnap(data: {
+			text: $text
+			user_id: $user_id
+		}){
+			id
+		}
+	}
+`;

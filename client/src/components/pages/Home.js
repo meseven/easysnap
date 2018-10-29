@@ -24,7 +24,6 @@ class Home extends Component {
 		});
 	}
 
-
 	render() {
 		const { session } = this.props;
 
