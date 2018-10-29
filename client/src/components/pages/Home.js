@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import { Query } from 'react-apollo';
-import { GET_SNAPS } from '../../queries';
+import { Query, Mutation } from 'react-apollo';
+import { GET_SNAPS, ADD_SNAP } from '../../queries';
 
 import TimeAgo from 'react-timeago';
 
@@ -24,6 +24,13 @@ class Home extends Component {
 		});
 	}
 
+	onSubmit = (e, addSnap) => {
+		e.preventDefault();
+		addSnap().then(async ({ data }) => {
+			console.log(data);
+		})
+	};
+
 	render() {
 		const { session } = this.props;
 
@@ -34,15 +41,27 @@ class Home extends Component {
 				</div>
 
 				<div>
-					<form>
-						<input
-							className="add-snap__input"
-							type="text"
-							name="text"
-							onChange={this.onChange}
-							disabled={!(session && session.activeUser)}
-							placeholder={ session && session.activeUser ? 'add snap' : 'please login for add a new snap!' }/>
-					</form>
+
+					<Mutation mutation={ADD_SNAP} variables={ { ...this.state } }>
+						{
+							(addSnap, { loading, error }) => (
+								<form
+									onSubmit={e => {
+										this.onSubmit(e, addSnap);
+									}}
+								>
+									<input
+										className="add-snap__input"
+										type="text"
+										name="text"
+										onChange={this.onChange}
+										disabled={!(session && session.activeUser)}
+										placeholder={ session && session.activeUser ? 'add snap' : 'please login for add a new snap!' }/>
+								</form>
+							)
+						}
+					</Mutation>
+
 				</div>
 
 				<div>
