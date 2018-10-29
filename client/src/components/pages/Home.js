@@ -25,9 +25,13 @@ class Home extends Component {
 	};
 
 	componentDidMount() {
-		this.setState({
-			user_id: this.props.session.activeUser.id
-		});
+		const { session } = this.props;
+
+		if (session && session.activeUser) {
+			this.setState({
+				user_id: this.props.session.activeUser.id
+			});
+		}
 	}
 
 	onSubmit = (e, addSnap) => {
@@ -54,7 +58,7 @@ class Home extends Component {
 				<div>
 
 					<Mutation
-						mutation={ADD_SNAP} 
+						mutation={ADD_SNAP}
 						variables={ { ...this.state } }
 						refetchQueries={[{ query: GET_SNAPS }]}
 					>
