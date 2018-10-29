@@ -55,7 +55,7 @@ class Home extends Component {
 										type="text"
 										name="text"
 										onChange={this.onChange}
-										disabled={!(session && session.activeUser)}
+										disabled={!(session && session.activeUser) || loading}
 										placeholder={ session && session.activeUser ? 'add snap' : 'please login for add a new snap!' }/>
 								</form>
 							)
