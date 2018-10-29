@@ -13,9 +13,13 @@ class Home extends Component {
 	};
 
 	onChange = e => {
-		this.setState({
-			[e.target.name]: e.target.value
-		});
+		const { session } = this.state;
+
+		if (session && session.activeUser) {
+			this.setState({
+				[e.target.name]: e.target.value
+			});
+		}
 	};
 
 	formValidate = () => {
