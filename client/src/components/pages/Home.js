@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import { Query, Mutation } from 'react-apollo';
-import { GET_SNAPS, ADD_SNAP } from '../../queries';
+import {Query, Mutation} from 'react-apollo';
+import {GET_SNAPS, ADD_SNAP} from '../../queries';
 
 import TimeAgo from 'react-timeago';
 
@@ -19,13 +19,13 @@ class Home extends Component {
 	};
 
 	formValidate = () => {
-		const { text } = this.state;
+		const {text} = this.state;
 
 		return !text;
 	};
 
 	componentDidMount() {
-		const { session } = this.props;
+		const {session} = this.props;
 
 		if (session && session.activeUser) {
 			this.setState({
@@ -38,16 +38,14 @@ class Home extends Component {
 		e.preventDefault();
 
 		if (!this.formValidate()) {
-			addSnap().then(({ data }) => {
-				this.setState({
-					text: ''
-				});
+			addSnap().then(({data}) => {
+
 			})
 		}
 	};
 
-	updateCache = (cache, { data: { createSnap } }) => {
-		const { snaps } = cache.readQuery({
+	updateCache = (cache, {data: {createSnap}}) => {
+		const {snaps} = cache.readQuery({
 			query: GET_SNAPS
 		});
 
@@ -59,8 +57,29 @@ class Home extends Component {
 		})
 	};
 
+	addSnapOptimisticResponse = () => {
+		if (!this.formValidate()) {
+			this.setState({
+				text: ''
+			});
+		}
+		return {
+			__typename: "Mutation",
+			createSnap: {
+				__typename: "Snap",
+				id: Math.round(Math.random() * -200000),
+				text: this.state.text,
+				createdAt: new Date(),
+				user: {
+					__typename: "User",
+					...this.props.session.activeUser
+				}
+			}
+		}
+	};
+
 	render() {
-		const { session } = this.props;
+		const {session} = this.props;
 
 		return (
 			<div>
@@ -72,25 +91,13 @@ class Home extends Component {
 
 					<Mutation
 						mutation={ADD_SNAP}
-						variables={ { ...this.state } }
+						variables={{...this.state}}
 						//refetchQueries={[{ query: GET_SNAPS }]}
-						update={ this.updateCache }
-						optimisticResponse={{
-							__typename: "Mutation",
-							createSnap: {
-								__typename: "Snap",
-								id: Math.round(Math.random() * -200000),
-								text: this.state.text,
-								createdAt: new Date(),
-								user: {
-									__typename: "User",
-									...session.activeUser
-								}
-							}
-						}}
+						update={this.updateCache}
+						optimisticResponse={this.addSnapOptimisticResponse}
 					>
 						{
-							(addSnap, { loading, error }) => (
+							(addSnap, {loading, error}) => (
 								<form
 									onSubmit={e => {
 										this.onSubmit(e, addSnap);
@@ -102,8 +109,8 @@ class Home extends Component {
 										name="text"
 										value={this.state.text}
 										onChange={this.onChange}
-										disabled={!(session && session.activeUser) || loading}
-										placeholder={ session && session.activeUser ? 'add snap' : 'please login for add a new snap!' }/>
+										disabled={!(session && session.activeUser)}
+										placeholder={session && session.activeUser ? 'add snap' : 'please login for add a new snap!'}/>
 								</form>
 							)
 						}
@@ -115,7 +122,7 @@ class Home extends Component {
 
 					<Query query={GET_SNAPS}>
 						{
-							({ data, loading, error }) => {
+							({data, loading, error}) => {
 								if (loading) return <div className="loading">Loading snaps...</div>;
 								if (error) return <div>Error.</div>;
 
@@ -126,12 +133,12 @@ class Home extends Component {
 												data.snaps.map(snap => (
 													<li key={snap.id} className={snap.id < 0 ? 'optimistic' : ''}>
 														<div className="title">
-															<span className="username">@{ snap.user.username } </span>
-															{ snap.text }
+															<span className="username">@{snap.user.username} </span>
+															{snap.text}
 														</div>
 														<div className="date">
 															<span>
-																<TimeAgo date={ snap.createdAt } />
+																<TimeAgo date={snap.createdAt}/>
 															</span>
 														</div>
 													</li>
@@ -139,7 +146,7 @@ class Home extends Component {
 											}
 										</ul>
 
-										<div className="counter">{ data.snaps.length } snap(s)</div>
+										<div className="counter">{data.snaps.length} snap(s)</div>
 									</div>
 								)
 							}
