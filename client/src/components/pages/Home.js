@@ -75,6 +75,19 @@ class Home extends Component {
 						variables={ { ...this.state } }
 						//refetchQueries={[{ query: GET_SNAPS }]}
 						update={ this.updateCache }
+						optimisticResponse={{
+							__typename: "Mutation",
+							createSnap: {
+								__typename: "Snap",
+								id: Math.round(Math.random() * -200000),
+								text: this.state.text,
+								createdAt: new Date(),
+								user: {
+									__typename: "User",
+									...session.activeUser
+								}
+							}
+						}}
 					>
 						{
 							(addSnap, { loading, error }) => (
@@ -111,7 +124,7 @@ class Home extends Component {
 										<ul className="snaps">
 											{
 												data.snaps.map(snap => (
-													<li key={snap.id}>
+													<li key={snap.id} className={snap.id < 0 ? 'optimistic' : ''}>
 														<div className="title">
 															<span className="username">@{ snap.user.username } </span>
 															{ snap.text }
