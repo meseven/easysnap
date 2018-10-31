@@ -38,9 +38,14 @@ class Home extends Component {
 		e.preventDefault();
 
 		if (!this.formValidate()) {
-			addSnap().then(({data}) => {
+			this.setState({
+				text: ''
+			});
 
-			})
+			addSnap()
+				.then(({data}) => {
+
+				})
 		}
 	};
 
@@ -57,13 +62,8 @@ class Home extends Component {
 		})
 	};
 
-	addSnapOptimisticResponse = () => {
-		if (!this.formValidate()) {
-			this.setState({
-				text: ''
-			});
-		}
-		return {
+	addSnapOptimisticResponse = () => (
+		{
 			__typename: "Mutation",
 			createSnap: {
 				__typename: "Snap",
@@ -76,7 +76,7 @@ class Home extends Component {
 				}
 			}
 		}
-	};
+	);
 
 	render() {
 		const {session} = this.props;
@@ -138,7 +138,7 @@ class Home extends Component {
 														</div>
 														<div className="date">
 															<span>
-																{snap.id < 0 ? 'sending...' : <TimeAgo date={snap.createdAt}/>}
+																<TimeAgo date={snap.createdAt}/>
 															</span>
 														</div>
 													</li>
