@@ -46,6 +46,19 @@ class Home extends Component {
 		}
 	};
 
+	updateCache = (cache, { data: { createSnap } }) => {
+		const { snaps } = cache.readQuery({
+			query: GET_SNAPS
+		});
+
+		cache.writeQuery({
+			query: GET_SNAPS,
+			data: {
+				snaps: [createSnap, ...snaps]
+			}
+		})
+	};
+
 	render() {
 		const { session } = this.props;
 
@@ -60,7 +73,8 @@ class Home extends Component {
 					<Mutation
 						mutation={ADD_SNAP}
 						variables={ { ...this.state } }
-						refetchQueries={[{ query: GET_SNAPS }]}
+						//refetchQueries={[{ query: GET_SNAPS }]}
+						update={ this.updateCache }
 					>
 						{
 							(addSnap, { loading, error }) => (
