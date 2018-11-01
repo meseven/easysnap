@@ -6,8 +6,8 @@ module.exports = {
 				text
 			}).save();
 
-			pubsub.publish('sayi', {
-				sayi: 12
+			pubsub.publish('snap added', {
+				snapAdded: snap
 			});
 
 			return snap;

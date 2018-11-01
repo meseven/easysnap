@@ -22,5 +22,5 @@ input CreateSnapInput {
 }
 
 type Subscription{
-    sayi: Int
+    snapAdded: Snap!
 }

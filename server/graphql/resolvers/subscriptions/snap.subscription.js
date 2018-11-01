@@ -1,7 +1,7 @@
 module.exports = {
-	sayi: {
+	snapAdded: {
 		subscribe: (parent, args, { pubsub }) => {
-			return pubsub.asyncIterator('sayi');
+			return pubsub.asyncIterator('snap added');
 		}
 	}
 };
