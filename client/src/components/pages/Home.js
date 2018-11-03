@@ -62,8 +62,10 @@ class Home extends Component {
 		})
 	};
 
-	addSnapOptimisticResponse = () => (
-		{
+	render() {
+		const {session} = this.props;
+
+		const optimisticResponse = {
 			__typename: "Mutation",
 			createSnap: {
 				__typename: "Snap",
@@ -72,14 +74,10 @@ class Home extends Component {
 				createdAt: new Date(),
 				user: {
 					__typename: "User",
-					...this.props.session.activeUser
+					...session.activeUser
 				}
 			}
-		}
-	);
-
-	render() {
-		const {session} = this.props;
+		};
 
 		return (
 			<div>
@@ -94,7 +92,7 @@ class Home extends Component {
 						variables={{...this.state}}
 						//refetchQueries={[{ query: GET_SNAPS }]}
 						update={this.updateCache}
-						optimisticResponse={this.addSnapOptimisticResponse}
+						optimisticResponse={optimisticResponse}
 					>
 						{
 							(addSnap, {loading, error}) => (
