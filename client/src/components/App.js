@@ -12,7 +12,7 @@ import sessionWrapperHOC from './sessionWrapperHOC';
 import Header from './Header';
 
 // pages
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import Login from './pages/Login';
 import Join from './pages/Join';
 import Profile from './pages/Profile';
