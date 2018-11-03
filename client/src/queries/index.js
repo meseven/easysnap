@@ -66,3 +66,14 @@ export const ADD_SNAP = gql`
 		}
 	}
 `;
+
+// subscriptions
+
+export const USER_CREATED = gql`
+	subscription{
+		user{
+			id
+			username
+		}
+	}
+`;

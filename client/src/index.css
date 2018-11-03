@@ -191,6 +191,11 @@ li:nth-child(5) {
   margin-bottom:10px;
 }
 
+.joinedUs{
+  padding: 1rem 0;
+  text-align: center;
+}
+
 @-webkit-keyframes enter {
   from {
     opacity: 0;
