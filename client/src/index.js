@@ -3,22 +3,52 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 
-import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
-const client = new ApolloClient({
-	uri: 'http://localhost:4001/graphql',
-	fetchOptions: {
-		credentials: 'include'
-	},
-	request: operation => {
-		operation.setContext({
-			headers: {
-				authorization: localStorage.getItem('token')
-			}
-		})
-	}
+import { ApolloClient } from 'apollo-client';
+import { ApolloLink } from 'apollo-link';
+import { SubscriptionClient } from 'subscriptions-transport-ws';
+import { WebSocketLink } from 'apollo-link-ws';
+import { createHttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+
+const middlewareLink = new ApolloLink((operation, forward) => {
+	operation.setContext({
+		headers: {
+			authorization: localStorage.getItem("token") || null
+		}
+	});
+	return forward(operation);
 });
+
+const wsLink = new WebSocketLink(
+	new SubscriptionClient("ws://localhost:4001/graphql", {
+		reconnect: true,
+	}),
+);
+
+const httpLink = middlewareLink.concat(
+	createHttpLink({
+		uri: "http://localhost:4001/graphql",
+	})
+);
+
+const hasSubscriptionOperation = ({ query: { definitions } }) => {
+	return definitions.some(({ kind, operation }) => kind === 'OperationDefinition' && operation === 'subscription');
+};
+
+const link = ApolloLink.split(
+	hasSubscriptionOperation,
+	wsLink,
+	httpLink
+);
+
+const client = new ApolloClient({
+	link,
+	cache: new InMemoryCache(),
+});
+
+
 
 ReactDOM.render(
 	<ApolloProvider client={client}>
