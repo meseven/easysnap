@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 
-import { ApolloProvider } from 'react-apollo';
+import {ApolloProvider} from 'react-apollo';
 
-import { ApolloClient } from 'apollo-client';
-import { ApolloLink } from 'apollo-link';
-import { SubscriptionClient } from 'subscriptions-transport-ws';
-import { WebSocketLink } from 'apollo-link-ws';
-import { createHttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
+import {ApolloClient} from 'apollo-client';
+import {ApolloLink} from 'apollo-link';
+import {SubscriptionClient} from 'subscriptions-transport-ws';
+import {WebSocketLink} from 'apollo-link-ws';
+import {createHttpLink} from 'apollo-link-http';
+import {InMemoryCache} from 'apollo-cache-inmemory';
 
 const middlewareLink = new ApolloLink((operation, forward) => {
 	operation.setContext({
@@ -33,8 +33,8 @@ const httpLink = middlewareLink.concat(
 	})
 );
 
-const hasSubscriptionOperation = ({ query: { definitions } }) => {
-	return definitions.some(({ kind, operation }) => kind === 'OperationDefinition' && operation === 'subscription');
+const hasSubscriptionOperation = ({query: {definitions}}) => {
+	return definitions.some(({kind, operation}) => kind === 'OperationDefinition' && operation === 'subscription');
 };
 
 const link = ApolloLink.split(
@@ -49,10 +49,9 @@ const client = new ApolloClient({
 });
 
 
-
 ReactDOM.render(
 	<ApolloProvider client={client}>
-		<App />
+		<App/>
 	</ApolloProvider>,
 	document.getElementById('root')
 );
