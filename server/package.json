@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/meseven/easysnap#readme",
   "dependencies": {
+    "apollo-server": "^2.1.0",
     "apollo-server-express": "^2.1.0",
     "bcrypt": "^3.0.1",
     "dotenv": "^6.1.0",
