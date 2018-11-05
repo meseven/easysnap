@@ -77,3 +77,17 @@ export const USER_CREATED = gql`
 		}
 	}
 `;
+
+export const SNAP_CREATED = gql`
+	subscription($userId: ID){
+		snap(userId: $userId){
+			id
+			text
+			createdAt
+			user{
+				id
+				username
+			}
+		}
+	}
+`;
