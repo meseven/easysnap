@@ -13,7 +13,7 @@
 
 Clone this repo and go to server folder.
 
-```ruby
+```
 $ cd server
 $ npm install
 ```
@@ -28,7 +28,7 @@ SECRET_KEY = your secret key
 
 
 ### Run the app
-```ruby
+```
 $ npm run start:dev
 ```
 
@@ -39,7 +39,7 @@ and go to [localhost:4001/graphql](http://localhost:4001/graphql)
 ## 2- React Client
 
 Clone this repo and go to client folder.
-```ruby
+```
 $ cd client
 $ npm install
 ```
@@ -49,7 +49,7 @@ $ npm install
 #### - Development
 Create a file named ".env.development" in the root directory and fill its contents as follows.
 
-```ruby
+```
 REACT_APP_HTTP_URI = http://localhost:4001/graphql
 REACT_APP_SUBSCRIPTION_URI = ws://localhost:4001/graphql
 ```
@@ -57,13 +57,13 @@ REACT_APP_SUBSCRIPTION_URI = ws://localhost:4001/graphql
 #### - Production
 Create a file named ".env.production" in the root directory and fill its contents as follows.
 
-```ruby
+```
 REACT_APP_HTTP_URI = https://easysnap.herokuapp.com/graphql  // This is an example. Please write your GraphQL HTTP URI.
 REACT_APP_SUBSCRIPTION_URI = ws://easysnap.herokuapp.com/graphql // This is an example. Please write your GraphQL WS URI.
 ```
 
 ### Run the app
-```ruby
+```
 $ npm start
 ```
 
