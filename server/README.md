@@ -1,9 +1,6 @@
 # Easysnap - Node + GraphQL + Apollo Backend
 
-# Installation
-
-
-## 1- Node.JS Server
+## Installation
 
 Clone this repo and go to server folder.
 

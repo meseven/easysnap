@@ -1,6 +1,6 @@
 # Easysnap - React + Apollo Client
 
-# Installation
+## Installation
 
 Clone this repo and go to client folder.
 ```
