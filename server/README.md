@@ -14,6 +14,7 @@ Create a file named ".env" in the root directory and fill its contents as follow
 
 ```ruby
 DB_URI = mongodb://<dbuser>:<dbpassword>@<dbhost>:<dbport>/<dbname>
+SECRET_KEY = your secret key
 ```
 
 
