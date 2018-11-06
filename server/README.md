@@ -1,26 +1,29 @@
-# easysnap
+# Easysnap - Node + GraphQL + Apollo Backend
+
+# Installation
+
 
 ## 1- Node.JS Server
 
 Clone this repo and go to server folder.
 
-```ruby
-cd server
-npm install
+```
+$ cd server
+$ npm install
 ```
 
 ### Enviroment variables
 Create a file named ".env" in the root directory and fill its contents as follows.
 
-```ruby
+```
 DB_URI = mongodb://<dbuser>:<dbpassword>@<dbhost>:<dbport>/<dbname>
 SECRET_KEY = your secret key
 ```
 
 
 ### Run the app
-```ruby
-npm run start:dev // for locally
+```
+$ npm run start:dev
 ```
 
 and go to [localhost:4001/graphql](http://localhost:4001/graphql)
