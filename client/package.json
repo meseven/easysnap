@@ -25,7 +25,8 @@
     "start": "env-cmd .env.development react-scripts start",
     "build": "env-cmd .env.production react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && mv build/index.html build/200.html && surge build easysnap.surge.sh"
   },
   "eslintConfig": {
     "extends": "react-app"
