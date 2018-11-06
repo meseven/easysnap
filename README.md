@@ -14,14 +14,14 @@
 Clone this repo and go to server folder.
 
 ```ruby
-cd server
-npm install
+$ cd server
+$ npm install
 ```
 
 ### Enviroment variables
 Create a file named ".env" in the root directory and fill its contents as follows.
 
-```ruby
+```
 DB_URI = mongodb://<dbuser>:<dbpassword>@<dbhost>:<dbport>/<dbname>
 SECRET_KEY = your secret key
 ```
@@ -29,7 +29,7 @@ SECRET_KEY = your secret key
 
 ### Run the app
 ```ruby
-npm run start:dev
+$ npm run start:dev
 ```
 
 and go to [localhost:4001/graphql](http://localhost:4001/graphql)
@@ -40,8 +40,8 @@ and go to [localhost:4001/graphql](http://localhost:4001/graphql)
 
 Clone this repo and go to client folder.
 ```ruby
-cd client
-npm install
+$ cd client
+$ npm install
 ```
 
 ### Enviroment variables
@@ -64,7 +64,7 @@ REACT_APP_SUBSCRIPTION_URI = ws://easysnap.herokuapp.com/graphql // This is an e
 
 ### Run the app
 ```ruby
-npm start
+$ npm start
 ```
 
 and go to [localhost:3000](http://localhost:3000/)
