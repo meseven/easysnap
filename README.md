@@ -1,7 +1,10 @@
 # Easysnap
-:neckbeard:   [Live demo React client](http://graphql-movieapp.surge.sh/)
+:neckbeard:   [Live demo React client](http://easysnap.surge.sh/)
 
 :sunglasses:  [GraphiQL Interface](http://54.86.4.87:5000/graphql)
+
+![gif](https://mehmetseven.net/content/images/2018/11/newest.gif)
+
 
 # Installation
 
