@@ -9,6 +9,7 @@
     "apollo-link": "^1.2.3",
     "apollo-link-http": "^1.5.5",
     "apollo-link-ws": "^1.0.9",
+    "env-cmd": "^8.0.2",
     "graphql": "^14.0.2",
     "moment": "^2.22.2",
     "react": "^16.5.2",
@@ -21,8 +22,8 @@
     "subscriptions-transport-ws": "^0.9.15"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "env-cmd .env.development react-scripts start",
+    "build": "env-cmd .env.production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
