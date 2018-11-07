@@ -1,3 +1,0 @@
-type Token{
-    token: String!
-}
