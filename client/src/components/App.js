@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-
 import {
 	BrowserRouter as Router,
 	Route,
@@ -8,7 +7,6 @@ import {
 } from 'react-router-dom';
 
 import sessionWrapperHOC from './sessionWrapperHOC';
-
 import Header from './Header';
 
 // pages
