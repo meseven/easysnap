@@ -49,13 +49,20 @@ class NewSnapForm extends Component {
 		const {snaps} = cache.readQuery({
 			query: GET_SNAPS
 		});
-
+		if(!snaps.find(snap=>snap.id===createSnap.id)){
+			cache.writeQuery({
+				query: GET_SNAPS,
+				data: {
+					snaps: [createSnap, ...snaps]
+				}
+			})
+		}else{
 		cache.writeQuery({
 			query: GET_SNAPS,
 			data: {
-				snaps: [createSnap, ...snaps]
+				snaps
 			}
-		})
+		})}
 	};
 
 	render() {
