@@ -14,7 +14,7 @@ class Home extends Component {
 
 				<NewSnapForm  session={this.props.session}/>
 				<JoinedUs />
-				<SnapList />
+				<SnapList  session={this.props.session} />
 			</div>
 		);
 	}
